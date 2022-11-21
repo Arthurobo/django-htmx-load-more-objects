@@ -1,0 +1,1 @@
+https://dev.to/arthurobo/django-htmx-load-more-objects-3jg3
