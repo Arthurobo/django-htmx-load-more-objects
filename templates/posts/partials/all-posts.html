@@ -1,0 +1,31 @@
+{% if posts %}
+{% for post in posts %}
+<div class="col-md-4 centralize-div">
+  <div class="card m-2 p-2" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <p class="card-text">
+        {{ post.body|truncatechars:50 }}
+      </p>
+      <!-- <a href="#" class="btn btn-primary">Visit</a> -->
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="centralize-div">
+  <h3 class="ui header center aligned">No results!</h3>
+</div>
+{% endif %}
+
+
+<div class="centralize-div py-5" id="load-more">
+  {% if posts.has_next %}
+  <div class="ui divider"></div>
+  <button class="btn btn-primary" hx-get="{% url 'posts:posts' %}"
+    hx-vals='{"page": "{{ posts.next_page_number }}", "posts": "{{ posts }}"}' hx-target="#load-more"
+    hx-swap="outerHTML">
+    Load more
+  </button>
+  {% endif %}
+</div>
